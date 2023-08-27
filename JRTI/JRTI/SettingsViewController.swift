@@ -86,13 +86,13 @@ class SettingsViewController: UIViewController {
     
     
     @objc func selectRate(sender: UISlider!) {
-        self.rateLabel.text = "\tRate: \(Double(sender.value).truncate(places:1))"
+        self.rateLabel.text = "\tRate: \(Double(sender.value).truncate(places:2))"
         Configuration.speakerRate = sender.value
     }
     
     
     @objc func selectPitch(sender: UISlider!) {
-        self.pitchLabel.text = "\tPitch: \(Double(sender.value).truncate(places:1))"
+        self.pitchLabel.text = "\tPitch: \(Double(sender.value).truncate(places:2))"
         Configuration.speakerPitch = sender.value
     }
     
