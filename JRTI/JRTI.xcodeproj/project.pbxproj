@@ -13,7 +13,6 @@
 		3AC35F242A9B11BC004130C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AC35F222A9B11BC004130C3 /* Main.storyboard */; };
 		3AC35F262A9B11BF004130C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AC35F252A9B11BF004130C3 /* Assets.xcassets */; };
 		3AC35F292A9B11BF004130C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AC35F272A9B11BF004130C3 /* LaunchScreen.storyboard */; };
-		3AC35F312A9B12FC004130C3 /* ViewController+Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC35F302A9B12FC004130C3 /* ViewController+Document.swift */; };
 		3AC35F332A9B15E4004130C3 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC35F322A9B15E4004130C3 /* Configuration.swift */; };
 		3AC35F362A9B20BA004130C3 /* Voice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC35F352A9B20BA004130C3 /* Voice.swift */; };
 		3AC35F382A9B2507004130C3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC35F372A9B2507004130C3 /* SettingsViewController.swift */; };
@@ -29,7 +28,6 @@
 		3AC35F252A9B11BF004130C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3AC35F282A9B11BF004130C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3AC35F2A2A9B11BF004130C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3AC35F302A9B12FC004130C3 /* ViewController+Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Document.swift"; sourceTree = "<group>"; };
 		3AC35F322A9B15E4004130C3 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		3AC35F342A9B1D80004130C3 /* JRTI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JRTI.entitlements; sourceTree = "<group>"; };
 		3AC35F352A9B20BA004130C3 /* Voice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Voice.swift; sourceTree = "<group>"; };
@@ -72,7 +70,6 @@
 				3AC35F322A9B15E4004130C3 /* Configuration.swift */,
 				3AC35F1E2A9B11BC004130C3 /* SceneDelegate.swift */,
 				3AC35F202A9B11BC004130C3 /* ViewController.swift */,
-				3AC35F302A9B12FC004130C3 /* ViewController+Document.swift */,
 				3AC35F372A9B2507004130C3 /* SettingsViewController.swift */,
 				3AC35F392A9B2CE9004130C3 /* Utilities.swift */,
 				3AC35F352A9B20BA004130C3 /* Voice.swift */,
@@ -158,7 +155,6 @@
 				3AC35F212A9B11BC004130C3 /* ViewController.swift in Sources */,
 				3AC35F332A9B15E4004130C3 /* Configuration.swift in Sources */,
 				3AC35F382A9B2507004130C3 /* SettingsViewController.swift in Sources */,
-				3AC35F312A9B12FC004130C3 /* ViewController+Document.swift in Sources */,
 				3AC35F1D2A9B11BC004130C3 /* AppDelegate.swift in Sources */,
 				3AC35F362A9B20BA004130C3 /* Voice.swift in Sources */,
 				3AC35F3A2A9B2CE9004130C3 /* Utilities.swift in Sources */,

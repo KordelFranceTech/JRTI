@@ -96,22 +96,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate
         }
         return textToRead
     }
-    
-    
-    func vocalizeFileReading(textToRead: String) {
-        let synthesizer = AVSpeechSynthesizer()
 
-        var truncString: String = String(textToRead.prefix(200))
-        let utterance = AVSpeechUtterance(string: truncString)
-//        utterance.voice = AVSpeechSynthesisVoice(language: "en-GB")
-        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-//        utterance.rate = AVSpeechUtteranceDefaultSpeechRate
-        utterance.rate = 0.4
-//        utterance.pitchMultiplier = 1.5
-//            utterance.volume = 1.0
-
-        synthesizer.speak(utterance)
-    }
     
     @objc func playPause(sender: UIButton!) {
         if speaker.synthesizer.isPaused {
@@ -122,6 +107,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate
             playPauseButton.setTitle("Play", for: .normal)
         }
     }
+    
     
     @objc func showSettings(recognizer: UIGestureRecognizer!) {
         if self.canPresentSettings {
