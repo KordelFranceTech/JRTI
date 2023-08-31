@@ -21,10 +21,12 @@ class ViewController: UIViewController, UINavigationControllerDelegate
     var playPauseButton: UIButton!
     var textView: UITextView!
     var longPress: UILongPressGestureRecognizer!
+    var keyboardTap: UITapGestureRecognizer!
     
     var jrtiUrl: URL!
     let speaker = Voice()
     var canPresentSettings: Bool = true
+    var startedSpeaking: Bool = false
 
 
     override func viewDidLoad() {
@@ -33,13 +35,13 @@ class ViewController: UIViewController, UINavigationControllerDelegate
         textView = UITextView(frame: CGRect(x: 20, y: 50, width: self.view.frame.width - 40, height: self.view.frame.height - 200))
         textView.textColor = UIColor.white
         textView.font = UIFont(name: Configuration.primaryFont, size: 17)
-        textView.isEditable = false
+//        textView.isEditable = false
         self.view.addSubview(textView)
         
         playPauseButton = UIButton(frame: CGRect(x: 60, y: self.view.frame.maxY - 130, width: self.view.bounds.size.width - 120, height: 50))
         playPauseButton.backgroundColor = UIColor.black
         playPauseButton.isOpaque = true
-        playPauseButton.setTitle("Pause", for: .normal)
+        playPauseButton.setTitle("Play", for: .normal)
         playPauseButton.setTitleColor(Configuration.trimColor, for: .normal)
         playPauseButton.contentMode = .scaleAspectFit
         playPauseButton.layer.cornerRadius = 8
@@ -66,8 +68,18 @@ class ViewController: UIViewController, UINavigationControllerDelegate
         longPress.addTarget(self, action: #selector(showSettings(recognizer:)))
         self.view.addGestureRecognizer(longPress)
         
+        keyboardTap = UITapGestureRecognizer()
+        keyboardTap.addTarget(self, action: #selector(dismissKeyboard(_:)))
+        self.view.addGestureRecognizer(keyboardTap)
+        
         self.title = "Just Read the Instructions"
     }
+    
+    
+    @objc func dismissKeyboard(_: UITapGestureRecognizer!) {
+        self.view.endEditing(true)
+    }
+    
 
     @objc func openDocument(sender: UIButton!) {
         let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [.pdf], asCopy: true)
@@ -99,12 +111,18 @@ class ViewController: UIViewController, UINavigationControllerDelegate
 
     
     @objc func playPause(sender: UIButton!) {
-        if speaker.synthesizer.isPaused {
-            speaker.synthesizer.continueSpeaking()
+        if !self.startedSpeaking {
+            self.startedSpeaking = true
             playPauseButton.setTitle("Pause", for: .normal)
-        } else {
-            speaker.synthesizer.pauseSpeaking(at: .word)
-            playPauseButton.setTitle("Play", for: .normal)
+            speaker.speak(msg: self.textView.text)
+        } else{
+            if speaker.synthesizer.isPaused {
+                speaker.synthesizer.continueSpeaking()
+                playPauseButton.setTitle("Pause", for: .normal)
+            } else {
+                speaker.synthesizer.pauseSpeaking(at: .word)
+                playPauseButton.setTitle("Play", for: .normal)
+            }
         }
     }
     
@@ -127,10 +145,10 @@ extension ViewController: UIDocumentPickerDelegate {
             return
         }
         print("import result : \(myURL)")
-        var textToRead: String = readFileContents(documentUrl: myURL)
+        var textToRead: String = self.readFileContents(documentUrl: myURL)
         self.textView.text = textToRead
-        speaker.speak(msg: textToRead)
-        playPauseButton.isHidden = false
+        self.playPauseButton.isHidden = false
+        self.startedSpeaking = false
     }
 
      func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
