@@ -136,6 +136,43 @@ class ViewController: UIViewController, UINavigationControllerDelegate
             })
         }
     }
+    
+    func removePreamble(fullText: String) -> String {
+        var str: String = fullText
+        var strToReturn: String = fullText
+        
+        if let range: Range<String.Index> = str.range(of: "Abstract") {
+            let index: Int = str.distance(from: str.startIndex, to: range.lowerBound)
+            strToReturn = String(str.dropFirst(index))
+        }
+        
+        if let range: Range<String.Index> = strToReturn.range(of: "ABSTRACT") {
+            let index: Int = strToReturn.distance(from: strToReturn.startIndex, to: range.lowerBound)
+            strToReturn = String(strToReturn.dropFirst(index))
+        }
+        
+//        start = str.startIndex
+//        while let from = str.range(of: "", range: start..<str.endIndex)?.lowerBound,
+//              let to = str.range(of: "Abstract", range: from..<str.endIndex)?.upperBound,
+//              from != to {
+//            str.removeSubrange(from..<to)
+//            start = from
+//        }
+        return strToReturn
+    }
+    
+    func removeCitations(fullText: String) -> String {
+        var str: String = fullText
+        var start = str.startIndex
+
+        while let from = str.range(of: "(", range: start..<str.endIndex)?.lowerBound,
+            let to = str.range(of: ")", range: from..<str.endIndex)?.upperBound,
+            from != to {
+                str.removeSubrange(from..<to)
+                start = from
+        }
+        return str
+    }
 }
 
 extension ViewController: UIDocumentPickerDelegate {
@@ -146,7 +183,9 @@ extension ViewController: UIDocumentPickerDelegate {
         }
         print("import result : \(myURL)")
         var textToRead: String = self.readFileContents(documentUrl: myURL)
-        self.textView.text = textToRead
+        var textTrimmed: String = removePreamble(fullText: textToRead)
+        textTrimmed = removeCitations(fullText: textTrimmed)
+        self.textView.text = textTrimmed
         self.playPauseButton.isHidden = false
         self.startedSpeaking = false
     }
