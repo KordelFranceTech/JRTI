@@ -15,7 +15,7 @@ import UniformTypeIdentifiers
 
 class ViewController: UIViewController, UINavigationControllerDelegate
  {
-    
+    // UI parameters
     var settingsButton: UIButton!
     var submitButton: UIButton!
     var playPauseButton: UIButton!
@@ -29,15 +29,18 @@ class ViewController: UIViewController, UINavigationControllerDelegate
     var startedSpeaking: Bool = false
 
 
+    // MARK: View Lifecycle Begin
     override func viewDidLoad() {
         super.viewDidLoad()        
         
+        // This will be the view of the loaded PDF text
         textView = UITextView(frame: CGRect(x: 20, y: 50, width: self.view.frame.width - 40, height: self.view.frame.height - 200))
         textView.textColor = UIColor.white
         textView.font = UIFont(name: Configuration.primaryFont, size: 17)
-//        textView.isEditable = false
+//        textView.isEditable = false // uncomment this if you want to edit the text that is loaded from the pdf
         self.view.addSubview(textView)
         
+        // This is the button to start/stop audio
         playPauseButton = UIButton(frame: CGRect(x: 60, y: self.view.frame.maxY - 130, width: self.view.bounds.size.width - 120, height: 50))
         playPauseButton.backgroundColor = UIColor.black
         playPauseButton.isOpaque = true
@@ -51,6 +54,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate
         playPauseButton.isHidden = true
         self.view.addSubview(playPauseButton)
         
+        // This is the button for selecting the PDF from your library
         submitButton = UIButton(frame: CGRect(x: 60, y: self.view.frame.maxY - 70, width: self.view.bounds.size.width - 120, height: 50))
         submitButton.backgroundColor = Configuration.trimColor
         submitButton.isOpaque = true
@@ -63,17 +67,37 @@ class ViewController: UIViewController, UINavigationControllerDelegate
         submitButton.addTarget(self, action: #selector(openDocument(sender:)), for: .touchUpInside)
         self.view.addSubview(submitButton)
         
+        // Poor UI design, but long pressing the screen will show the Settings Menu
+        // TODO @kordel.france: fix this to create better UX
         longPress = UILongPressGestureRecognizer()
         longPress.minimumPressDuration = 0.5
         longPress.addTarget(self, action: #selector(showSettings(recognizer:)))
         self.view.addGestureRecognizer(longPress)
         
+        // Tap the screen to dismiss the keyboard when trying to edit the text view
         keyboardTap = UITapGestureRecognizer()
         keyboardTap.addTarget(self, action: #selector(dismissKeyboard(_:)))
         self.view.addGestureRecognizer(keyboardTap)
         
         self.title = "Just Read the Instructions"
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    // MARK: View Lifecycle end
     
     
     @objc func dismissKeyboard(_: UITapGestureRecognizer!) {

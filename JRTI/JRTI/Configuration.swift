@@ -11,7 +11,6 @@ import UIKit
 struct Configuration {
     
     static var appVersion: String = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)!
-    static var STATE: Int = 0
     static var databaseConfig: Int = 1  //0 experimental server (seekar), 1 Theta cloud (Theta)
     static var highConfig: Int = 1
     

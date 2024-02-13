@@ -10,6 +10,7 @@ import UIKit
 
 class SettingsViewController: UIViewController {
     
+    // UI Parameters
     var rateLabel: UILabel!
     var pitchLabel: UILabel!
     var voiceLabel: UILabel!
@@ -17,6 +18,8 @@ class SettingsViewController: UIViewController {
     var pitchSlider: UISlider!
     var voiceSegControl: UISegmentedControl!
     
+    
+    // MARK: View Lifecycle Begin
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -83,6 +86,23 @@ class SettingsViewController: UIViewController {
         voiceSegControl.addTarget(self, action: #selector(selectVoice(sender:)), for: .touchUpInside)
         self.view.addSubview(voiceSegControl)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    // MARK: View Lifecycle end
     
     
     @objc func selectRate(sender: UISlider!) {
